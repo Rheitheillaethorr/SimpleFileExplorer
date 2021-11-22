@@ -10,6 +10,10 @@ namespace SimpleFileExplorer
             Files Test = new Files(firstDirectory);
             Test.ReadAllFiles();
             Test.CDBack();
+            Test.ReadAllFiles();
+            Test.CDNext();
+            Test.ReadAllFiles();
+            Test.WhereAmI();
         }
     }
     class Files
@@ -21,6 +25,7 @@ namespace SimpleFileExplorer
         }
         public void ReadAllFiles()
         {
+            Console.WriteLine("\n"+PresentDirectory);
             DirectoryInfo di = new DirectoryInfo (@PresentDirectory);
             foreach (var fi in di.GetDirectories())
             {
@@ -47,6 +52,15 @@ namespace SimpleFileExplorer
                 }
             }
             PresentDirectory = PresentDirectory.Remove(PresentDirectory.Length - 1);
+        }
+        public void CDNext()
+        {
+            Console.WriteLine("Tell me next directory");
+            string directory = Console.ReadLine();
+            PresentDirectory = PresentDirectory + "\\" + directory;
+        }
+        public void WhereAmI()
+        {
             Console.WriteLine(PresentDirectory);
         }
     }
